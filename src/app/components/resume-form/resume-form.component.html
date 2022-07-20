@@ -1,0 +1,51 @@
+<h4 class="display-6 fw-bold">Make My Resume</h4>
+<p>Please fill the below details to generate your resume</p>
+
+<ng-container *ngIf="!!resumeForm">
+    <form [formGroup]="resumeForm" (ngSubmit)="onSubmit(resumeForm.value)">
+        <accordion>
+
+            <accordion-group class="mb-4" [isOpen]="true">
+                <button
+                    class="btn btn-default btn-block justify-content-between d-flex w-100 shadow-none no-border px-0"
+                    accordion-heading type="button">
+                    <span class="fw-bold">{{resumeSections.PERSONAL_INFORMATION}}</span>
+                </button>
+                <app-personal-information [personalInformation]="personalInformationForm" [submitted]="submitted">
+                </app-personal-information>
+            </accordion-group>
+
+            <accordion-group class="mb-4" [isOpen]="true">
+                <button
+                    class="btn btn-default btn-block justify-content-between d-flex w-100 shadow-none no-border px-0"
+                    accordion-heading type="button">
+                    <span class="fw-bold">{{resumeSections.EDUCATION_INFORMATION}}</span>
+                </button>
+
+                <div class="row">
+                    <div class="col-md-10 col-10">
+                        <span class="note">Add upto 3 qualification, highest one first</span>
+                    </div>
+                    <div class="col-md-2 col-2">
+                        <div class="text-end">
+                            <button [disabled]="educationInformationForm.length >= 3" type="button"
+                                (click)="onAddEducationInfo()" class="btn btn-primary btn-sm">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <app-education-information [educationInformation]="educationInformationForm" [submitted]="submitted"
+                    (deleteClickEvent)="onDeleteEducationInfo($event)">
+                </app-education-information>
+
+            </accordion-group>
+
+
+
+
+
+        </accordion>
+
+        <button type="submit" class="btn btn-primary mt-2">Go</button>
+    </form>
+</ng-container>

@@ -1,0 +1,40 @@
+<form [formGroup]="personalInformation">
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <div>
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" formControlName="name">
+                <ng-container
+                    *ngIf="(personalInfoFormControl.name.touched || submitted) && personalInfoFormControl.name.errors?.required">
+                    <div class="invalid-feedback">Please provide a name.</div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+            <div>
+                <label class="form-label">Email Id</label>
+                <input type="text" class="form-control" formControlName="emailId">
+                <ng-container *ngIf="personalInfoFormControl.emailId.touched || submitted">
+                    <div *ngIf="personalInfoFormControl.emailId.errors?.required" class="invalid-feedback">Please
+                        provide a email id.</div>
+                    <div *ngIf="personalInfoFormControl.emailId.errors?.emailInValid" class="invalid-feedback">Please
+                        provide a valid email id.</div>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+            <div>
+                <label class="form-label">Phone Number</label>
+                <input type="text" class="form-control" formControlName="phoneNumber">
+                <ng-container
+                    *ngIf="(personalInfoFormControl.phoneNumber.touched || submitted)  && personalInfoFormControl.phoneNumber.errors?.required">
+                    <div class="invalid-feedback">
+                        Please provide a phone number.
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</form>
