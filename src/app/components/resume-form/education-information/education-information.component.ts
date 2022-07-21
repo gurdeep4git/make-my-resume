@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray } from '@angular/forms';
+import { ResumeSections } from 'src/app/enums/resume-sections.enum';
 
 @Component({
   selector: 'app-education-information',
@@ -10,16 +11,23 @@ export class EducationInformationComponent implements OnInit {
 
   @Input() educationInformation: FormArray;
   @Input() submitted: boolean;
-  @Output() deleteClickEvent = new EventEmitter<number>();
+  @Output() deleteClickEvent = new EventEmitter();
+  @Output() addClickEvent = new EventEmitter<string>();
+
+
+  resumeSections = ResumeSections;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.educationInformation);
   }
 
-  onDelete(index: number) {
-    this.deleteClickEvent.emit(index);
+  onAddClick(type: string): void {
+    this.addClickEvent.emit(type);
+  }
+
+  onDelete(index: number, type: string) {
+    this.deleteClickEvent.emit({ index, type });
   }
 
 }

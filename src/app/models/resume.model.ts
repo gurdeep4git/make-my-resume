@@ -3,7 +3,7 @@ import { FormatTypes } from "../enums/format-type.enum";
 export class Resume {
     personalInformation: PersonalInformation;
     educationInformation: EducationInformation[];
-    experienceInformation: ExperienceInformation[];
+    experienceInformation: ExperienceInformation;
     skillInformation: string[];
     interests: string[];
     formatType: FormatTypes;
@@ -21,11 +21,16 @@ class EducationInformation {
 }
 
 class ExperienceInformation {
+    isFresher: boolean;
+    experiences: Experiences[];
+}
+
+class Experiences {
     organizationName: string;
     tenure: Tenure;
     projectName: string;
     role: string;
-    description: string;
+    description: string[];
 }
 
 class Tenure {

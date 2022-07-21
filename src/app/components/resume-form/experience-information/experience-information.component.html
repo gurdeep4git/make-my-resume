@@ -1,0 +1,115 @@
+<ng-container>
+    <form [formGroup]="experienceInformation">
+        <div class="form-check">
+            <input class="form-check-input" formControlName="isFresher" (change)="onChange($event.target.checked)"
+                type="checkbox" id="fresherCheck">
+            <label class="form-check-label" for="fresherCheck">
+                I am a fresher
+            </label>
+        </div>
+
+
+        <ng-container *ngIf="!showExperiences">
+            <div class="text-end">
+                <button type="button" class="btn btn-primary btn-sm"
+                    (click)="onAddClick(resumeSections.EXPERIENCE_INFORMATION)">Add</button>
+            </div>
+
+            <ng-container *ngFor="let expInfo of experiences.controls;let i = index">
+                <div [class.m-in-exp-fields]="i>0" [formGroup]="expInfo">
+                    <div class="row">
+                        <div class="col-md-10 col-10">
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Organization {{i+1}}</label>
+                                        <input type="text" class="form-control" formControlName="organizationName">
+                                        <ng-container
+                                            *ngIf="(expInfo.controls.organizationName.touched || submitted) && expInfo.controls.organizationName.errors?.required">
+                                            <div class="invalid-feedback">Please provide an organization.</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Joining Date</label>
+                                        <input type="text" class="form-control" bsDatepicker placeholder="MM/DD/YYYY"
+                                            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [bsValue]="bsValue"
+                                            formControlName="tenureFrom">
+                                        <ng-container
+                                            *ngIf="(expInfo.controls.tenureFrom.touched || submitted) && expInfo.controls.tenureFrom.errors?.required">
+                                            <div class="invalid-feedback">Please provide a joining date.</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Leaving Date</label>
+                                        <input type="text" class="form-control" bsDatepicker placeholder="MM/DD/YYYY"
+                                            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [bsValue]="bsValue"
+                                            formControlName="tenureTo">
+                                        <ng-container
+                                            *ngIf="(expInfo.controls.tenureTo.touched || submitted) && expInfo.controls.tenureTo.errors?.required">
+                                            <div class="invalid-feedback">Please provide a leaving date.</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Project</label>
+                                        <input type="text" class="form-control" formControlName="projectName">
+                                        <ng-container
+                                            *ngIf="(expInfo.controls.projectName.touched || submitted) && expInfo.controls.projectName.errors?.required">
+                                            <div class="invalid-feedback">Please provide a project.</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Role</label>
+                                        <input type="text" class="form-control" formControlName="role">
+                                        <ng-container
+                                            *ngIf="(expInfo.controls.role.touched || submitted) && expInfo.controls.role.errors?.required">
+                                            <div class="invalid-feedback">Please provide a role.</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-12">
+                                    <div>
+                                        <label class="form-label">Description <small class="note">(Please add
+                                                description in
+                                                points
+                                                with enter at
+                                                the end)</small></label>
+                                        <textarea class="form-control" formControlName="description"
+                                            rows="5"></textarea>
+                                        <ng-container
+                                            *ngIf="(expInfo.controls.description.touched || submitted) && expInfo.controls.description.errors?.required">
+                                            <div class="invalid-feedback">Please provide a description.</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-2">
+                            <div *ngIf="i>0">
+                                <div class="text-end">
+                                    <span class="delete-action"
+                                        (click)="onDelete(i,resumeSections.EXPERIENCE_INFORMATION)">Delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-container>
+        </ng-container>
+
+    </form>
+</ng-container>

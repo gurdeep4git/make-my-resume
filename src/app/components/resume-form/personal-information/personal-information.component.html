@@ -27,11 +27,14 @@
         <div class="col-md-4 col-12">
             <div>
                 <label class="form-label">Phone Number</label>
-                <input type="text" class="form-control" formControlName="phoneNumber">
-                <ng-container
-                    *ngIf="(personalInfoFormControl.phoneNumber.touched || submitted)  && personalInfoFormControl.phoneNumber.errors?.required">
-                    <div class="invalid-feedback">
+                <input type="text" class="form-control" maxlength="10" formControlName="phoneNumber">
+                <ng-container *ngIf="personalInfoFormControl.phoneNumber.touched || submitted">
+                    <div *ngIf="personalInfoFormControl.phoneNumber.errors?.required" class="invalid-feedback">
                         Please provide a phone number.
+                    </div>
+                    <div *ngIf="personalInfoFormControl.phoneNumber.errors?.phoneNumberInValid"
+                        class="invalid-feedback">
+                        Please provide a valid phone number.
                     </div>
                 </ng-container>
             </div>

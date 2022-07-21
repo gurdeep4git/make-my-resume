@@ -12,7 +12,10 @@ import { PersonalInformationComponent } from './components/resume-form/personal-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 import { EducationInformationComponent } from './components/resume-form/education-information/education-information.component';
+import { ExperienceInformationComponent } from './components/resume-form/experience-information/experience-information.component';
 
 const routes: Routes = [
   { path: 'form', component: ResumeFormComponent },
@@ -29,7 +32,8 @@ const routes: Routes = [
     FormatOneComponent,
     FormatTwoComponent,
     PersonalInformationComponent,
-    EducationInformationComponent
+    EducationInformationComponent,
+    ExperienceInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

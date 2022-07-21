@@ -1,40 +1,56 @@
-<ng-container *ngFor="let eduInfo of educationInformation.controls;let i = index">
-    <div [class.m-in-fields]="i>0" [formGroup]="eduInfo">
-        <div class="row">
-            <div class="col-md-10 col-10">
-                <div class="row">
-                    <div class="col-md-4 col-12">
-                        <div>
-                            <label class="form-label">Institution</label>
-                            <input type="text" class="form-control" formControlName="institutionName">
-                            <ng-container
-                                *ngIf="(eduInfo.controls.institutionName.touched || submitted) && eduInfo.controls.institutionName.errors?.required">
-                                <div class="invalid-feedback">Please provide a institution.</div>
-                            </ng-container>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-12">
-                        <div>
-                            <label class="form-label">Year of Passing</label>
-                            <input type="text" class="form-control" formControlName="passingYear">
-                            <ng-container
-                                *ngIf="(eduInfo.controls.passingYear.touched || submitted) && eduInfo.controls.passingYear.errors?.required">
-                                <div class="invalid-feedback">Please provide a year of passing.</div>
-                            </ng-container>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-2 col-2">
-                <div *ngIf="i>0">
-                    <div class="text-end">
-                        <span class="delete-action" (click)="onDelete(i)">Delete</span>
-                    </div>
-                </div>
+<div>
+    <div class="row">
+        <div class="col-md-10 col-10">
+            <span class="note">Add upto 3 qualification, highest one first</span>
+        </div>
+        <div class="col-md-2 col-2">
+            <div class="text-end">
+                <button [disabled]="educationInformation.length >= 3" type="button"
+                    (click)="onAddClick(resumeSections.EDUCATION_INFORMATION)"
+                    class="btn btn-primary btn-sm">Add</button>
             </div>
         </div>
-
     </div>
-</ng-container>
+
+    <ng-container *ngFor="let eduInfo of educationInformation.controls;let i = index">
+        <div [class.m-in-fields]="i>0" [formGroup]="eduInfo">
+            <div class="row">
+                <div class="col-md-10 col-10">
+                    <div class="row">
+                        <div class="col-md-4 col-12">
+                            <div>
+                                <label class="form-label">Institution {{i+1}}</label>
+                                <input type="text" class="form-control" formControlName="institutionName">
+                                <ng-container
+                                    *ngIf="(eduInfo.controls.institutionName.touched || submitted) && eduInfo.controls.institutionName.errors?.required">
+                                    <div class="invalid-feedback">Please provide a institution.</div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-12">
+                            <div>
+                                <label class="form-label">Year of Passing</label>
+                                <input type="text" class="form-control" formControlName="passingYear">
+                                <ng-container
+                                    *ngIf="(eduInfo.controls.passingYear.touched || submitted) && eduInfo.controls.passingYear.errors?.required">
+                                    <div class="invalid-feedback">Please provide a year of passing.</div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-2">
+                    <div *ngIf="i>0">
+                        <div class="text-end">
+                            <span class="delete-action"
+                                (click)="onDelete(i,resumeSections.EDUCATION_INFORMATION)">Delete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ng-container>
+</div>
