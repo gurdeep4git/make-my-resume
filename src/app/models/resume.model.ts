@@ -13,6 +13,7 @@ class PersonalInformation {
     name: string;
     phoneNumber: string;
     emailId: string;
+    description: string;
 }
 
 class EducationInformation {
