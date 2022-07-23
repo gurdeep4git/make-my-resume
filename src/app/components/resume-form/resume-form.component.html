@@ -43,8 +43,48 @@
 
             </accordion-group>
 
+
+            <accordion-group class="mb-4" [isOpen]="true">
+                <button
+                    class="btn btn-default btn-block justify-content-between d-flex w-100 shadow-none no-border px-0"
+                    accordion-heading type="button">
+                    <span class="fw-bold">{{resumeSections.SKILLS_INFORMATION}}</span>
+                </button>
+
+                <app-skill-information [parentForm]="resumeForm" [submitted]="submitted"></app-skill-information>
+
+            </accordion-group>
+
+            <accordion-group class="mb-4" [isOpen]="true">
+                <button
+                    class="btn btn-default btn-block justify-content-between d-flex w-100 shadow-none no-border px-0"
+                    accordion-heading type="button">
+                    <span class="fw-bold">{{resumeSections.CERTIFICATIONS_INFORMATION}}</span>
+                </button>
+
+                <app-certifications-information [certificationsInformation]="certificationsInformationForm"
+                    [submitted]="submitted" (addClickEvent)="onAddClick($event)"
+                    (deleteClickEvent)="onDeleteClick($event)" (changeEvent)="onChangeIsCertified($event)">
+                </app-certifications-information>
+
+            </accordion-group>
+
+            <accordion-group class="mb-4" [isOpen]="true">
+                <button
+                    class="btn btn-default btn-block justify-content-between d-flex w-100 shadow-none no-border px-0"
+                    accordion-heading type="button">
+                    <span class="fw-bold">{{resumeSections.INTERESTS_INFORMATION}}</span>
+                </button>
+
+                <app-interests-information [parentForm]="resumeForm" [submitted]="submitted">
+                </app-interests-information>
+
+            </accordion-group>
+
+
+
         </accordion>
 
-        <button type="submit" class="btn btn-primary mt-2">Go</button>
+        <button type="submit" class="btn btn-primary mt-2">Submit & Preview</button>
     </form>
 </ng-container>

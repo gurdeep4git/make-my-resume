@@ -1,0 +1,15 @@
+<div [formGroup]="parentForm">
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <label class="form-label">Skills</label><small class="note ms-1">(Add your skills comma
+                    separated)</small>
+                <input type="text" class="form-control" formControlName="skills">
+                <ng-container
+                    *ngIf="(parentForm.controls.skills.touched || submitted) && parentForm.controls.skills.errors?.required">
+                    <div class="invalid-feedback">Please provide skills.</div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div [formGroup]="certificationsInformation">
+
+    <div class="form-check">
+        <input class="form-check-input" formControlName="isCertified" (change)="onChange($event.target.checked)"
+            type="checkbox" id="certifiedCheck">
+        <label class="form-check-label" for="certifiedCheck">
+            I do not have any certifications yet
+        </label>
+    </div>
+
+    <ng-container *ngIf="!showCertifications">
+        <div class="text-end">
+            <button type="button" class="btn btn-primary btn-sm"
+                (click)="onAddClick(resumeSections.CERTIFICATIONS_INFORMATION)">Add</button>
+        </div>
+        <ng-container *ngFor="let eduInfo of certifications.controls;let i = index">
+            <div [class.m-in-fields]="i>0" [formGroup]="eduInfo">
+                <div class="row">
+                    <div class="col-md-10 col-10">
+                        <div class="row">
+                            <div class="col-md-4 col-12">
+                                <div>
+                                    <label class="form-label">Certificate {{i+1}}</label>
+                                    <input type="text" class="form-control" formControlName="title">
+                                    <ng-container
+                                        *ngIf="(eduInfo.controls.title.touched || submitted) && eduInfo.controls.title.errors?.required">
+                                        <div class="invalid-feedback">Please provide a certificate title.</div>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-12">
+                                <div>
+                                    <label class="form-label">Organization</label>
+                                    <input type="text" class="form-control" formControlName="organization">
+                                    <ng-container
+                                        *ngIf="(eduInfo.controls.organization.touched || submitted) && eduInfo.controls.organization.errors?.required">
+                                        <div class="invalid-feedback">Please provide organization.</div>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-2">
+                        <div *ngIf="i>0">
+                            <div class="text-end">
+                                <span class="delete-action"
+                                    (click)="onDelete(i,resumeSections.CERTIFICATIONS_INFORMATION)">Delete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

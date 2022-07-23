@@ -4,7 +4,7 @@ export class Resume {
     personalInformation: PersonalInformation;
     educationInformation: EducationInformation[];
     experienceInformation: ExperienceInformation;
-    skillInformation: string[];
+    skills: string[];
     interests: string[];
     formatType: FormatTypes;
 }

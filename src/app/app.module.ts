@@ -16,6 +16,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { EducationInformationComponent } from './components/resume-form/education-information/education-information.component';
 import { ExperienceInformationComponent } from './components/resume-form/experience-information/experience-information.component';
+import { SkillInformationComponent } from './components/resume-form/skill-information/skill-information.component';
+import { InterestsInformationComponent } from './components/resume-form/interests-information/interests-information.component';
+import { CertificationsInformationComponent } from './components/resume-form/certifications-information/certifications-information.component';
 
 const routes: Routes = [
   { path: 'form', component: ResumeFormComponent },
@@ -33,7 +36,10 @@ const routes: Routes = [
     FormatTwoComponent,
     PersonalInformationComponent,
     EducationInformationComponent,
-    ExperienceInformationComponent
+    ExperienceInformationComponent,
+    SkillInformationComponent,
+    InterestsInformationComponent,
+    CertificationsInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     AccordionModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
