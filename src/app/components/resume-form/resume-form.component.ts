@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormatTypes } from 'src/app/enums/format-type.enum';
 import { ResumeSections } from 'src/app/enums/resume-sections.enum';
+import { Resume } from 'src/app/models/resume.model';
 import { digitOnlyValidator, emailValidator } from '../validators';
 
 @Component({
@@ -21,11 +24,23 @@ export class ResumeFormComponent implements OnInit {
   experiencesForm: FormArray;
   certificationsForm: FormArray;
   certificationsInformationForm: FormGroup;
+  resume: Resume;
+  routerState: any;
 
 
   constructor(
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+
+    if (this.router.getCurrentNavigation()?.extras.state) {
+      this.routerState = this.router.getCurrentNavigation()?.extras.state;
+      if (this.routerState) {
+        this.resume = this.routerState.resume
+      }
+    }
+
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -42,9 +57,37 @@ export class ResumeFormComponent implements OnInit {
     this.submitted = true;
 
     if (this.resumeForm.valid) {
+      this.modelProcessing(resumeData);
       console.log(resumeData);
+
+      this.router.navigateByUrl(`/preview`, {
+        state: {
+          resume: this.resume
+        }
+      })
     }
 
+  }
+
+  private modelProcessing(resumeData: any) {
+    this.resume = new Resume();
+    this.resume.personalInformation = resumeData.personalInformation;
+    this.resume.educationInformation = resumeData.educationInformation;
+
+    this.resume.experienceInformation = resumeData.experienceInformation;
+
+    resumeData.experienceInformation.experiences.forEach((e: any, i: number) => {
+      this.resume.experienceInformation.experiences.forEach((f: any, j: number) => {
+        if (i == j) {
+          f.description = e.description.replace(/[\n]/g, '@').split('@');
+        }
+      })
+    })
+
+    this.resume.certificationsInformation = resumeData.certificationsInformation;
+    this.resume.skills = resumeData.skills.split(',');
+    this.resume.interests = resumeData.interests.split(',');
+    this.resume.formatType = FormatTypes.ONE;
   }
 
   onAddClick(type: string): void {
@@ -84,22 +127,22 @@ export class ResumeFormComponent implements OnInit {
   private initForm() {
     this.resumeForm = this.fb.group({
       personalInformation: this.fb.group({
-        name: ['Test', Validators.required],
-        emailId: ['Test@test.com', [Validators.required, emailValidator]],
-        phoneNumber: ['7777777777', [Validators.required, digitOnlyValidator]],
-        description: ['Test Description', Validators.required]
+        name: [this.resume ? this.resume.personalInformation.name : 'Test', Validators.required],
+        emailId: [this.resume ? this.resume.personalInformation.emailId : 'Test@test.com', [Validators.required, emailValidator]],
+        phoneNumber: [this.resume ? this.resume.personalInformation.phoneNumber : '7777777777', [Validators.required, digitOnlyValidator]],
+        description: [this.resume ? this.resume.personalInformation.description : 'Test Description', Validators.required]
       }),
       educationInformation: this.fb.array([this.initEducationInformationForm()]),
       experienceInformation: this.fb.group({
-        isFresher: [''],
+        isFresher: [false],
         experiences: this.fb.array([this.initExperiencesForm()])
       }),
-      skills: ['HTML', Validators.required],
+      skills: ['HTML,CSS', Validators.required],
       certificationsInformation: this.fb.group({
-        isCertified: [''],
+        isCertified: [false],
         certifications: this.fb.array([this.initCertificationsForm()]),
       }),
-      interests: ['Sports', Validators.required]
+      interests: ['Sports,Reading', Validators.required]
     })
   }
 
@@ -111,7 +154,6 @@ export class ResumeFormComponent implements OnInit {
   private getCertificationsInformationForm(): FormGroup {
     return this.resumeForm.get('certificationsInformation') as FormGroup;
   }
-
 
   private getPersonalInformationForm(): FormGroup {
     return this.resumeForm.get('personalInformation') as FormGroup;

@@ -5,6 +5,7 @@ export class Resume {
     educationInformation: EducationInformation[];
     experienceInformation: ExperienceInformation;
     skills: string[];
+    certificationsInformation: CertificationsInformation;
     interests: string[];
     formatType: FormatTypes;
 }
@@ -28,13 +29,19 @@ class ExperienceInformation {
 
 class Experiences {
     organizationName: string;
-    tenure: Tenure;
+    tenureFrom: string;
+    tenureTo: string;
     projectName: string;
     role: string;
     description: string[];
 }
 
-class Tenure {
-    from: string;
-    to: string;
+class CertificationsInformation {
+    isCertified: boolean;
+    certifications: Certifications[]
+}
+
+class Certifications {
+    title: string;
+    organization: string;
 }

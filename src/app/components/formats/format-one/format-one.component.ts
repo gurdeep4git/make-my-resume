@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Resume } from 'src/app/models/resume.model';
 
 @Component({
   selector: 'app-format-one',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormatOneComponent implements OnInit {
 
-  students: { id: number, name: string }[];
+  resume: Resume;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(' dynamic - mai chla')
+
   }
 
 }

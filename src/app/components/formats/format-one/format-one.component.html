@@ -1,5 +1,10 @@
-<ng-container *ngIf="!!students">
-    <ng-container *ngFor="let s of students">
-        <p>{{s.name}}</p>
-    </ng-container>
+<ng-container *ngIf="!!resume">
+    <div class="resume">
+
+        <div class="personal-info">
+            <p class="c-name">{{resume.personalInformation.name}}</p>
+
+        </div>
+
+    </div>
 </ng-container>

@@ -11,6 +11,7 @@ export class ExperienceInformationComponent implements OnInit {
 
   @Input() experienceInformation: FormGroup;
   @Input() submitted: boolean;
+
   @Output() addClickEvent = new EventEmitter<string>();
   @Output() deleteClickEvent = new EventEmitter();
   @Output() changeEvent = new EventEmitter();
