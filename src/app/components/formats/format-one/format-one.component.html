@@ -1,9 +1,83 @@
 <ng-container *ngIf="!!resume">
     <div class="resume">
+        <!-- PERSONAL -->
+        <div class="personal-info section">
+            <p class="c-title">{{resume.personalInformation.name}}</p>
+            <ul class="c-details">
+                <li>
+                    <span class="c-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <span>{{resume.personalInformation.emailId}}</span>
+                </li>
+                <li>
+                    <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    <span>+91 {{resume.personalInformation.phoneNumber}}</span>
+                </li>
+            </ul>
+        </div>
 
-        <div class="personal-info">
-            <p class="c-name">{{resume.personalInformation.name}}</p>
+        <!-- PROFILE -->
+        <div class="section">
+            <h1 class="title">Profile</h1>
+            <p class="text-wrap">{{resume.personalInformation.description}}</p>
+        </div>
 
+        <!--SKILLS-->
+        <div class="section">
+            <h1 class="title">{{resumeSections.SKILLS_INFORMATION}}</h1>
+            <ul>
+                <li *ngFor="let item of resume.skills">{{item}}</li>
+            </ul>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="section">
+            <h1 class="title">{{resumeSections.EXPERIENCE_INFORMATION}}</h1>
+            <ng-container *ngIf="!!resume.experienceInformation.isFresher">
+                I am a fresher
+            </ng-container>
+            <ng-container *ngIf="!resume.experienceInformation.isFresher">
+                <ng-container *ngFor="let exp of resume.experienceInformation.experiences; let last = last">
+                    <div [ngClass]="last ? 'mb-0' : 'mb-4'">
+                        <div><b>{{exp.role}}</b> - {{exp.tenureFrom}} to {{exp.tenureTo}}</div>
+                        <div><b>{{exp.organizationName}}</b></div>
+                        <ul>
+                            <li *ngFor="let item of exp.description">{{item}}</li>
+                        </ul>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="section">
+            <h1 class="title">{{resumeSections.EDUCATION_INFORMATION}}</h1>
+            <ng-container *ngFor="let edu of resume.educationInformation; let last = last">
+                <div [ngClass]="last ? 'mb-0' : 'mb-2'">
+                    <div><b>MCA</b> - {{edu.passingYear}}</div>
+                    <div><b>{{edu.institutionName}}</b></div>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- CERTIFICATIONS -->
+        <ng-container *ngIf="!resume.certificationsInformation.isCertified">
+            <div class="section">
+                <h1 class="title">{{resumeSections.CERTIFICATIONS_INFORMATION}}</h1>
+                <ng-container
+                    *ngFor="let certificate of resume.certificationsInformation.certifications; let last = last">
+                    <div [ngClass]="last ? 'mb-0' : 'mb-2'">
+                        <div><b>{{certificate.title}}</b> from {{certificate.organization}}</div>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <!-- INTERESTS -->
+        <div class="section">
+            <h1 class="title">{{resumeSections.INTERESTS_INFORMATION}}</h1>
+            <ul>
+                <li *ngFor="let item of resume.interests">{{item}}</li>
+            </ul>
         </div>
 
     </div>

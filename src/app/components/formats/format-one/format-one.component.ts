@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResumeSections } from 'src/app/enums/resume-sections.enum';
 import { Resume } from 'src/app/models/resume.model';
 
 @Component({
@@ -9,6 +10,8 @@ import { Resume } from 'src/app/models/resume.model';
 export class FormatOneComponent implements OnInit {
 
   resume: Resume;
+  resumeSections = ResumeSections;
+
 
   constructor() { }
 
