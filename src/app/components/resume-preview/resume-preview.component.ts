@@ -4,7 +4,8 @@ import { FormatTwoComponent } from '../formats/format-two/format-two.component';
 import { Resume } from 'src/app/models/resume.model';
 import { FormatTypes } from 'src/app/enums/format-type.enum';
 import { Router } from '@angular/router';
-import { HTMLOptions, jsPDF } from "jspdf";
+//@ts-ignore
+import html2pdf from 'html2pdf.js'
 
 @Component({
   selector: 'app-resume-preview',
@@ -55,7 +56,7 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit, AfterViewC
         }
       ],
       "experienceInformation": {
-        "isFresher": true,
+        "isFresher": false,
         "experiences": [
           {
             "organizationName": "Quovantis",
@@ -130,26 +131,20 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit, AfterViewC
   }
 
   onDownload() {
-    const doc = new jsPDF('p', 'mm', 'a4');
-    doc.setFont("arial");
 
-    //210 x 297 mm
-    //A4 (art paper, 1.18 inch (30 mm) margin)	8.00 x 9.33 inches (203.2 x 237.0 mm)
+    const fileName = this.resume.personalInformation.name;
+    const content = document.querySelector('#resumeContainer') as HTMLElement;
 
-    var pdfjs = document.querySelector('#resumeContainer') as HTMLElement;
+    const options = {
+      margin: 0.5,
+      filename: `${fileName}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
 
-    console.log(pdfjs)
-
-    const options: HTMLOptions = {
-      x: 30,
-      y: 30,
-      width: 150,
-      callback: doc => {
-        doc.save("resume.pdf");
-      },
-    }
-
-    doc.html(pdfjs, options);
+    html2pdf().set(options).from(content).save();
   }
 
 
