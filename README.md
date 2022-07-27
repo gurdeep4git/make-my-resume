@@ -1,4 +1,4 @@
-![image](https://github.com/github/make-my-resume/src/assets/make-my-resume.png)
+![image](https://github.com/github/make-my-resume/src/assets/images/make-my-resume.png)
 
 # MyResume
 
