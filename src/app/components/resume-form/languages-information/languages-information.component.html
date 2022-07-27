@@ -1,0 +1,15 @@
+<div [formGroup]="parentForm">
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <label class="form-label">Languages</label><small class="note ms-1">(Add known languages comma
+                    separated)</small>
+                <input type="text" class="form-control" formControlName="languages">
+                <ng-container
+                    *ngIf="(parentForm.controls.languages.touched || submitted) && parentForm.controls.languages.errors?.required">
+                    <div class="invalid-feedback">Please provide known languages.</div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

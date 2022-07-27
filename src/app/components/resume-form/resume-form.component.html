@@ -81,6 +81,18 @@
 
             </accordion-group>
 
+            <accordion-group class="mb-4" [isOpen]="true">
+                <button
+                    class="btn btn-default btn-block justify-content-between d-flex w-100 shadow-none no-border px-0"
+                    accordion-heading type="button">
+                    <span class="fw-bold">{{resumeSections.LANGUAGES_INFORMATION}}</span>
+                </button>
+
+                <app-languages-information [parentForm]="resumeForm" [submitted]="submitted">
+                </app-languages-information>
+
+            </accordion-group>
+
 
 
         </accordion>

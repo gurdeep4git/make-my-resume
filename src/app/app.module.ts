@@ -19,6 +19,8 @@ import { ExperienceInformationComponent } from './components/resume-form/experie
 import { SkillInformationComponent } from './components/resume-form/skill-information/skill-information.component';
 import { InterestsInformationComponent } from './components/resume-form/interests-information/interests-information.component';
 import { CertificationsInformationComponent } from './components/resume-form/certifications-information/certifications-information.component';
+import { LanguagesInformationComponent } from './components/resume-form/languages-information/languages-information.component';
+import { PhoneMaskedPipe } from './pipes/phone-masked.pipe';
 
 const routes: Routes = [
   { path: 'form', component: ResumeFormComponent },
@@ -39,7 +41,9 @@ const routes: Routes = [
     ExperienceInformationComponent,
     SkillInformationComponent,
     InterestsInformationComponent,
-    CertificationsInformationComponent
+    CertificationsInformationComponent,
+    LanguagesInformationComponent,
+    PhoneMaskedPipe
   ],
   imports: [
     BrowserModule,

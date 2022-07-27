@@ -47,10 +47,12 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit, AfterViewC
       },
       "educationInformation": [
         {
+          "courseName": 'Test',
           "institutionName": "Test",
           "passingYear": "2011"
         },
         {
+          "courseName": 'Test',
           "institutionName": "Test",
           "passingYear": "2011"
         }
@@ -98,6 +100,10 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit, AfterViewC
       "interests": [
         "Sports",
         "Reading"
+      ],
+      "languages": [
+        "Hindi",
+        "English"
       ],
       "formatType": 1
     }

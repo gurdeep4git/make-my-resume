@@ -4,5 +4,6 @@ export enum ResumeSections {
     EXPERIENCE_INFORMATION = 'Experience',
     SKILLS_INFORMATION = 'Skills',
     INTERESTS_INFORMATION = 'Interests',
-    CERTIFICATIONS_INFORMATION = 'Certifications'
+    CERTIFICATIONS_INFORMATION = 'Certifications',
+    LANGUAGES_INFORMATION = 'Languages'
 }

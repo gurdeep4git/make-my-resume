@@ -85,8 +85,9 @@ export class ResumeFormComponent implements OnInit {
     })
 
     this.resume.certificationsInformation = resumeData.certificationsInformation;
-    this.resume.skills = resumeData.skills.split(',');
-    this.resume.interests = resumeData.interests.split(',');
+    this.resume.skills = resumeData.skills.split(',').map((e: string) => e.trim());
+    this.resume.interests = resumeData.interests.split(',').map((e: string) => e.trim());
+    this.resume.languages = resumeData.languages.split(',').map((e: string) => e.trim());
     this.resume.formatType = FormatTypes.ONE;
   }
 
@@ -121,9 +122,6 @@ export class ResumeFormComponent implements OnInit {
     checked ? this.certificationsForm.clear() : this.certificationsForm.push(this.initCertificationsForm());
   }
 
-
-
-
   private initForm() {
     this.resumeForm = this.fb.group({
       personalInformation: this.fb.group({
@@ -142,7 +140,8 @@ export class ResumeFormComponent implements OnInit {
         isCertified: [false],
         certifications: this.fb.array([this.initCertificationsForm()]),
       }),
-      interests: ['Sports,Reading', Validators.required]
+      interests: ['Sports,Reading', Validators.required],
+      languages: ['English', Validators.required]
     })
   }
 
@@ -174,6 +173,7 @@ export class ResumeFormComponent implements OnInit {
 
   private initEducationInformationForm(): FormGroup {
     return this.fb.group({
+      courseName: ['Bsc. Physical Science', Validators.required],
       institutionName: ['Test', Validators.required],
       passingYear: ['2011', Validators.required]
     })

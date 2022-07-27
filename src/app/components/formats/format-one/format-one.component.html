@@ -10,7 +10,7 @@
                 </li>
                 <li>
                     <span class="c-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                    <span>+91 {{resume.personalInformation.phoneNumber}}</span>
+                    <span>+91 {{resume.personalInformation.phoneNumber | phoneMasked}}</span>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,8 @@
             <ng-container *ngIf="!resume.experienceInformation.isFresher">
                 <ng-container *ngFor="let exp of resume.experienceInformation.experiences; let last = last">
                     <div [ngClass]="last ? 'mb-0' : 'mb-4'">
-                        <div><b>{{exp.role}}</b> - {{exp.tenureFrom}} to {{exp.tenureTo}}</div>
+                        <div><b>{{exp.role}}</b> - {{exp.tenureFrom | date:'longDate'}} to {{exp.tenureTo |
+                            date:'longDate'}}</div>
                         <div><b>{{exp.organizationName}}</b></div>
                         <ul>
                             <li *ngFor="let item of exp.description">{{item}}</li>
@@ -53,7 +54,7 @@
             <h1 class="title">{{resumeSections.EDUCATION_INFORMATION}}</h1>
             <ng-container *ngFor="let edu of resume.educationInformation; let last = last">
                 <div [ngClass]="last ? 'mb-0' : 'mb-2'">
-                    <div><b>MCA</b> - {{edu.passingYear}}</div>
+                    <div><b>{{edu.courseName}}</b> - {{edu.passingYear}}</div>
                     <div><b>{{edu.institutionName}}</b></div>
                 </div>
             </ng-container>
@@ -77,6 +78,14 @@
             <h1 class="title">{{resumeSections.INTERESTS_INFORMATION}}</h1>
             <ul>
                 <li *ngFor="let item of resume.interests">{{item}}</li>
+            </ul>
+        </div>
+
+        <!-- LANGUAGES -->
+        <div class="section">
+            <h1 class="title">{{resumeSections.LANGUAGES_INFORMATION}}</h1>
+            <ul>
+                <li *ngFor="let item of resume.languages">{{item}}</li>
             </ul>
         </div>
 

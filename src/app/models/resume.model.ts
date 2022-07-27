@@ -7,6 +7,7 @@ export class Resume {
     skills: string[];
     certificationsInformation: CertificationsInformation;
     interests: string[];
+    languages: string[];
     formatType: FormatTypes;
 }
 
@@ -18,6 +19,7 @@ class PersonalInformation {
 }
 
 class EducationInformation {
+    courseName: string;
     institutionName: string;
     passingYear: string;
 }

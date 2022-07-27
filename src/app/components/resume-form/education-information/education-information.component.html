@@ -19,6 +19,17 @@
                     <div class="row">
                         <div class="col-md-4 col-12">
                             <div>
+                                <label class="form-label">Course {{i+1}}</label>
+                                <input type="text" class="form-control" formControlName="courseName">
+                                <ng-container
+                                    *ngIf="(eduInfo.controls.courseName.touched || submitted) && eduInfo.controls.courseName.errors?.required">
+                                    <div class="invalid-feedback">Please provide a course.</div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-12">
+                            <div>
                                 <label class="form-label">Institution {{i+1}}</label>
                                 <input type="text" class="form-control" formControlName="institutionName">
                                 <ng-container
