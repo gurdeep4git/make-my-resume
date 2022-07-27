@@ -1,4 +1,4 @@
-![iamge](assets/make-my-resume.png)
+![image](src/assets/make-my-resume.png)
 
 # MyResume
 
