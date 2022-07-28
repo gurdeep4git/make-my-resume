@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { FormatTypes } from 'src/app/enums/format-type.enum';
 import { ResumeSections } from 'src/app/enums/resume-sections.enum';
-import { Certifications, EducationInformation, Resume } from 'src/app/models/resume.model';
+import { Certifications, EducationInformation, Experiences, Resume } from 'src/app/models/resume.model';
 import { digitOnlyValidator, emailValidator } from '../validators';
 
 @Component({
@@ -85,9 +85,15 @@ export class ResumeFormComponent implements OnInit {
       this.resume.experienceInformation.experiences.forEach((f: any, j: number) => {
         if (i == j) {
           f.description = e.description.replace(/[\n]/g, '@').split('@');
+          const a = f.description.filter((w: string, i: number) => w !== "");
+          f.description = a;
         }
       })
     })
+
+    if (this.resume.experienceInformation.isFresher) {
+      this.resume.experienceInformation.experiences.length = 0;
+    }
 
     this.resume.certificationsInformation = resumeData.certificationsInformation;
 
@@ -112,47 +118,50 @@ export class ResumeFormComponent implements OnInit {
     }
   }
 
-  onDeleteClick(obj: { type: string, i: number }) {
+  onDeleteClick(obj: { type: string, index: number }) {
     switch (obj.type) {
-      case ResumeSections.EDUCATION_INFORMATION: this.educationInformationForm.removeAt(obj.i);
+      case ResumeSections.EDUCATION_INFORMATION: this.educationInformationForm.removeAt(obj.index);
         break;
-      case ResumeSections.EXPERIENCE_INFORMATION: this.experiencesForm.removeAt(obj.i);
+      case ResumeSections.EXPERIENCE_INFORMATION: this.experiencesForm.removeAt(obj.index);
         break;
-      case ResumeSections.CERTIFICATIONS_INFORMATION: this.certificationsForm.removeAt(obj.i);
+      case ResumeSections.CERTIFICATIONS_INFORMATION: this.certificationsForm.removeAt(obj.index);
         break;
     }
 
   }
 
   onChangeIsFresher(checked: boolean): void {
-    checked ? this.experiencesForm.clear() : this.experiencesForm.push(this.initExperiencesForm());
+    if (!this.resume) {
+      checked ? this.experiencesForm.clear() : this.experiencesForm.push(this.initExperiencesForm());
+    }
   }
 
   onChangeIsCertified(checked: boolean): void {
-    if (!this.resume)
+    if (!this.resume) {
       checked ? this.certificationsForm.clear() : this.certificationsForm.push(this.initCertificationsForm());
+    }
   }
 
   private initForm() {
     this.resumeForm = this.fb.group({
       personalInformation: this.fb.group({
-        name: ['Test', Validators.required],
-        emailId: ['test@test.com', [Validators.required, emailValidator]],
-        phoneNumber: ['7894561230', [Validators.required, digitOnlyValidator]],
-        description: ['Test Summary', Validators.required]
+        name: ['', Validators.required],
+        emailId: ['', [Validators.required, emailValidator]],
+        phoneNumber: ['', [Validators.required, digitOnlyValidator]],
+        description: ['', Validators.required]
       }),
       educationInformation: this.fb.array([this.initEducationInformationForm()]),
       experienceInformation: this.fb.group({
         isFresher: [false],
         experiences: this.fb.array([this.initExperiencesForm()])
       }),
-      skills: ['HTML,CSS', Validators.required],
+      skills: ['', Validators.required],
       certificationsInformation: this.fb.group({
         notCertified: [false],
         certifications: this.fb.array([this.initCertificationsForm()]),
       }),
-      interests: ['Sports,Reading', Validators.required],
-      languages: ['English', Validators.required]
+      interests: ['', Validators.required],
+      languages: ['', Validators.required]
     })
   }
 
@@ -184,21 +193,21 @@ export class ResumeFormComponent implements OnInit {
 
   private initEducationInformationForm(): FormGroup {
     return this.fb.group({
-      courseName: ['MCA', Validators.required],
-      institutionName: ['DU', Validators.required],
-      passingYear: ['2011', Validators.required]
+      courseName: ['', Validators.required],
+      institutionName: ['', Validators.required],
+      passingYear: ['', Validators.required]
     })
   }
 
   private initExperiencesForm(): FormGroup {
     return this.fb.group({
-      organizationName: ['Quovantis', Validators.required],
-      projectName: ['PwC', Validators.required],
-      role: ['UI Dev', Validators.required],
+      organizationName: ['', Validators.required],
+      projectName: ['', Validators.required],
+      role: ['', Validators.required],
       tenureFrom: ['', Validators.required],
       tenureTo: ['', Validators.required],
       isCurrentlyWorking: [false],
-      description: ['Test', Validators.required]
+      description: ['', Validators.required]
     })
   }
 
@@ -217,8 +226,36 @@ export class ResumeFormComponent implements OnInit {
     this.resumeForm.get('interests')?.setValue(this.resume.interests.join(', '));
     this.resumeForm.get('languages')?.setValue(this.resume.languages.join(', '));
     this.fillCertificationInformation();
+    this.fillExperienceInformation();
+
+
   }
 
+
+  private fillExperienceInformation() {
+    this.experienceInformationForm.get('isFresher')?.setValue(this.resume.experienceInformation.isFresher);
+    this.experiencesForm.clear();
+
+    if (!this.resume.experienceInformation.isFresher) {
+      this.resume.experienceInformation.experiences.forEach((g: Experiences) => {
+        const group = this.initExperiencesForm();
+        group.get('organizationName')?.setValue(g.organizationName);
+        group.get('projectName')?.setValue(g.projectName);
+        group.get('role')?.setValue(g.role);
+        group.get('tenureFrom')?.setValue(g.tenureFrom);
+        group.get('tenureTo')?.setValue(g.tenureTo || '');
+        group.get('isCurrentlyWorking')?.setValue(g.isCurrentlyWorking);
+
+        if (g.isCurrentlyWorking) {
+          group.get('tenureTo')?.disable();
+        }
+
+        group.get('description')?.setValue(g.description.join('\n'));
+
+        this.experiencesForm.push(group);
+      });
+    }
+  }
 
   private fillCertificationInformation(): void {
     this.certificationsInformationForm.get('notCertified')?.setValue(this.resume.certificationsInformation.notCertified);
@@ -232,8 +269,6 @@ export class ResumeFormComponent implements OnInit {
 
         this.certificationsForm.push(group);
       });
-    } else {
-      this.certificationsForm.push(this.initCertificationsForm());
     }
   }
 

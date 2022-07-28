@@ -26,6 +26,7 @@ export class ExperienceInformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.bsValue = new Date();
+    this.showExperiences = this.experienceInformation.get('isFresher')?.value;
     this.experiences = this.experienceInformation.get('experiences') as FormArray;
   }
 
@@ -44,6 +45,7 @@ export class ExperienceInformationComponent implements OnInit {
 
   onIsCurrentlyWorkingChange(checked: boolean, index: number) {
     const tenureToControl = this.experiences.controls[index].get('tenureTo');
+    tenureToControl?.setValue('');
     if (checked) {
       tenureToControl?.disable();
       tenureToControl?.clearValidators();
