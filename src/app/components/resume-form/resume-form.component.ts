@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { FormatTypes } from 'src/app/enums/format-type.enum';
 import { ResumeSections } from 'src/app/enums/resume-sections.enum';
-import { Resume } from 'src/app/models/resume.model';
+import { Certifications, EducationInformation, Resume } from 'src/app/models/resume.model';
 import { digitOnlyValidator, emailValidator } from '../validators';
 
 @Component({
@@ -51,6 +51,11 @@ export class ResumeFormComponent implements OnInit {
     this.experiencesForm = this.getExperiencesForm();
     this.certificationsInformationForm = this.getCertificationsInformationForm();
     this.certificationsForm = this.getCertifications();
+
+    if (!!this.resume) {
+      this.populateResume();
+    }
+
   }
 
   onSubmit(resumeData: any): void {
@@ -85,6 +90,11 @@ export class ResumeFormComponent implements OnInit {
     })
 
     this.resume.certificationsInformation = resumeData.certificationsInformation;
+
+    if (this.resume.certificationsInformation.notCertified) {
+      this.resume.certificationsInformation.certifications.length = 0;
+    }
+
     this.resume.skills = resumeData.skills.split(',').map((e: string) => e.trim());
     this.resume.interests = resumeData.interests.split(',').map((e: string) => e.trim());
     this.resume.languages = resumeData.languages.split(',').map((e: string) => e.trim());
@@ -119,16 +129,17 @@ export class ResumeFormComponent implements OnInit {
   }
 
   onChangeIsCertified(checked: boolean): void {
-    checked ? this.certificationsForm.clear() : this.certificationsForm.push(this.initCertificationsForm());
+    if (!this.resume)
+      checked ? this.certificationsForm.clear() : this.certificationsForm.push(this.initCertificationsForm());
   }
 
   private initForm() {
     this.resumeForm = this.fb.group({
       personalInformation: this.fb.group({
-        name: [this.resume ? this.resume.personalInformation.name : 'Test', Validators.required],
-        emailId: [this.resume ? this.resume.personalInformation.emailId : 'Test@test.com', [Validators.required, emailValidator]],
-        phoneNumber: [this.resume ? this.resume.personalInformation.phoneNumber : '7777777777', [Validators.required, digitOnlyValidator]],
-        description: [this.resume ? this.resume.personalInformation.description : 'Test Description', Validators.required]
+        name: ['Test', Validators.required],
+        emailId: ['test@test.com', [Validators.required, emailValidator]],
+        phoneNumber: ['7894561230', [Validators.required, digitOnlyValidator]],
+        description: ['Test Summary', Validators.required]
       }),
       educationInformation: this.fb.array([this.initEducationInformationForm()]),
       experienceInformation: this.fb.group({
@@ -137,7 +148,7 @@ export class ResumeFormComponent implements OnInit {
       }),
       skills: ['HTML,CSS', Validators.required],
       certificationsInformation: this.fb.group({
-        isCertified: [false],
+        notCertified: [false],
         certifications: this.fb.array([this.initCertificationsForm()]),
       }),
       interests: ['Sports,Reading', Validators.required],
@@ -173,8 +184,8 @@ export class ResumeFormComponent implements OnInit {
 
   private initEducationInformationForm(): FormGroup {
     return this.fb.group({
-      courseName: ['Bsc. Physical Science', Validators.required],
-      institutionName: ['Test', Validators.required],
+      courseName: ['MCA', Validators.required],
+      institutionName: ['DU', Validators.required],
       passingYear: ['2011', Validators.required]
     })
   }
@@ -193,11 +204,57 @@ export class ResumeFormComponent implements OnInit {
 
   private initCertificationsForm(): FormGroup {
     return this.fb.group({
-      title: ['IITA', Validators.required],
-      organization: ['VDF', Validators.required],
+      title: ['', Validators.required],
+      organization: ['', Validators.required],
 
     })
   }
 
+  private populateResume(): void {
+    this.fillPersonalInformation();
+    this.fillEducationInformation();
+    this.resumeForm.get('skills')?.setValue(this.resume.skills.join(', '));
+    this.resumeForm.get('interests')?.setValue(this.resume.interests.join(', '));
+    this.resumeForm.get('languages')?.setValue(this.resume.languages.join(', '));
+    this.fillCertificationInformation();
+  }
+
+
+  private fillCertificationInformation(): void {
+    this.certificationsInformationForm.get('notCertified')?.setValue(this.resume.certificationsInformation.notCertified);
+    this.certificationsForm.clear();
+
+    if (!this.resume.certificationsInformation.notCertified) {
+      this.resume.certificationsInformation.certifications.forEach((g: Certifications) => {
+        const group = this.initCertificationsForm();
+        group.get('title')?.setValue(g.title);
+        group.get('organization')?.setValue(g.organization);
+
+        this.certificationsForm.push(group);
+      });
+    } else {
+      this.certificationsForm.push(this.initCertificationsForm());
+    }
+  }
+
+  private fillEducationInformation() {
+    this.educationInformationForm.clear();
+
+    this.resume.educationInformation.forEach((g: EducationInformation) => {
+      const group = this.initEducationInformationForm();
+      group.get('courseName')?.setValue(g.courseName);
+      group.get('institutionName')?.setValue(g.institutionName);
+      group.get('passingYear')?.setValue(g.passingYear);
+
+      this.educationInformationForm.push(group);
+    });
+  }
+
+  private fillPersonalInformation() {
+    this.personalInformationForm.get('name')?.setValue(this.resume.personalInformation.name);
+    this.personalInformationForm.get('emailId')?.setValue(this.resume.personalInformation.emailId);
+    this.personalInformationForm.get('phoneNumber')?.setValue(this.resume.personalInformation.phoneNumber);
+    this.personalInformationForm.get('description')?.setValue(this.resume.personalInformation.description);
+  }
 }
 

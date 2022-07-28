@@ -11,25 +11,25 @@ export class Resume {
     formatType: FormatTypes;
 }
 
-class PersonalInformation {
+export class PersonalInformation {
     name: string;
     phoneNumber: string;
     emailId: string;
     description: string;
 }
 
-class EducationInformation {
+export class EducationInformation {
     courseName: string;
     institutionName: string;
     passingYear: string;
 }
 
-class ExperienceInformation {
+export class ExperienceInformation {
     isFresher: boolean;
     experiences: Experiences[];
 }
 
-class Experiences {
+export class Experiences {
     organizationName: string;
     tenureFrom: string;
     tenureTo?: string;
@@ -39,12 +39,12 @@ class Experiences {
     description: string[];
 }
 
-class CertificationsInformation {
-    isCertified: boolean;
+export class CertificationsInformation {
+    notCertified: boolean;
     certifications: Certifications[]
 }
 
-class Certifications {
+export class Certifications {
     title: string;
     organization: string;
 }

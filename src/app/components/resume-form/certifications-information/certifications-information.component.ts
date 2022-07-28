@@ -21,6 +21,7 @@ export class CertificationsInformationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.showCertifications = this.certificationsInformation.get('notCertified')?.value;
     this.certifications = this.certificationsInformation.get('certifications') as FormArray;
   }
 
