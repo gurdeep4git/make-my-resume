@@ -186,6 +186,7 @@ export class ResumeFormComponent implements OnInit {
       role: ['UI Dev', Validators.required],
       tenureFrom: ['', Validators.required],
       tenureTo: ['', Validators.required],
+      isCurrentlyWorking: [false],
       description: ['Test', Validators.required]
     })
   }

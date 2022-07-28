@@ -36,77 +36,7 @@ export class ResumePreviewComponent implements OnInit, AfterViewInit, AfterViewC
   }
 
   ngOnInit(): void {
-    //@ts-ignore
-    //this.resume = this.location.getState();
-    this.resume = {
-      "personalInformation": {
-        "name": "Test",
-        "emailId": "Test@test.com",
-        "phoneNumber": "7777777777",
-        "description": "Highly skilled and results-oriented professional with solid academic preparation holding a Juris Doctor degree and extensive experience in intelligence and special operations seeks position in risk management. Proven ability to assess and manage complex obstacles; viewed as a strong troubleshooter. Successful in intense and demanding environments, providing decisive team leadership and structure with a track record of motivating and developing soldiers. Willing to relocate."
-      },
-      "educationInformation": [
-        {
-          "courseName": 'Test',
-          "institutionName": "Test",
-          "passingYear": "2011"
-        },
-        {
-          "courseName": 'Test',
-          "institutionName": "Test",
-          "passingYear": "2011"
-        }
-      ],
-      "experienceInformation": {
-        "isFresher": false,
-        "experiences": [
-          {
-            "organizationName": "Quovantis",
-            "projectName": "PwC",
-            "role": "UI Dev",
-            "tenureFrom": "2022-07-04T11:38:49.000Z",
-            "tenureTo": "2022-07-06T11:38:49.000Z",
-            "description": [
-              "Test",
-              "Test 1"
-            ]
-          },
-          {
-            "organizationName": "Quovantis 1",
-            "projectName": "PwC",
-            "role": "UI Dev",
-            "tenureFrom": "2022-07-04T11:38:49.000Z",
-            "tenureTo": "2022-07-06T11:38:49.000Z",
-            "description": [
-              "Test",
-              "Test 1"
-            ]
-          }
-        ]
-      },
-      "certificationsInformation": {
-        "isCertified": false,
-        "certifications": [
-          {
-            "title": "IITA",
-            "organization": "VDF"
-          }
-        ]
-      },
-      "skills": [
-        "HTML",
-        "CSS"
-      ],
-      "interests": [
-        "Sports",
-        "Reading"
-      ],
-      "languages": [
-        "Hindi",
-        "English"
-      ],
-      "formatType": 1
-    }
+
   }
 
   onEdit() {

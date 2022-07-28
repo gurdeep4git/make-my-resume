@@ -38,8 +38,8 @@
             <ng-container *ngIf="!resume.experienceInformation.isFresher">
                 <ng-container *ngFor="let exp of resume.experienceInformation.experiences; let last = last">
                     <div [ngClass]="last ? 'mb-0' : 'mb-4'">
-                        <div><b>{{exp.role}}</b> - {{exp.tenureFrom | date:'longDate'}} to {{exp.tenureTo |
-                            date:'longDate'}}</div>
+                        <div><b>{{exp.role}}</b> - {{exp.tenureFrom | date:'MMM YYYY'}} to {{exp.isCurrentlyWorking ?
+                            'Present' : exp.tenureTo | date:'MMM YYYY'}}</div>
                         <div><b>{{exp.organizationName}}</b></div>
                         <ul>
                             <li *ngFor="let item of exp.description">{{item}}</li>

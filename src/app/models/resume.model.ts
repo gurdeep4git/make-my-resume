@@ -32,7 +32,8 @@ class ExperienceInformation {
 class Experiences {
     organizationName: string;
     tenureFrom: string;
-    tenureTo: string;
+    tenureTo?: string;
+    isCurrentlyWorking: boolean;
     projectName: string;
     role: string;
     description: string[];

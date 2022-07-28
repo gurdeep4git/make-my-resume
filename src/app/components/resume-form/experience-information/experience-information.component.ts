@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormGroup, Validators } from '@angular/forms';
 import { ResumeSections } from 'src/app/enums/resume-sections.enum';
 
 @Component({
@@ -40,6 +40,18 @@ export class ExperienceInformationComponent implements OnInit {
   onChange(checked: boolean) {
     this.showExperiences = checked;
     this.changeEvent.emit(checked);
+  }
+
+  onIsCurrentlyWorkingChange(checked: boolean, index: number) {
+    const tenureToControl = this.experiences.controls[index].get('tenureTo');
+    if (checked) {
+      tenureToControl?.disable();
+      tenureToControl?.clearValidators();
+    } else {
+      tenureToControl?.enable();
+      tenureToControl?.setValidators([Validators.required]);
+    }
+    tenureToControl?.updateValueAndValidity();
   }
 
 }
