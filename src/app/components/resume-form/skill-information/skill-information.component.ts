@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { IMultiSelectOption, IMultiSelectSettings } from 'ngx-bootstrap-multiselect';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-skill-information',
