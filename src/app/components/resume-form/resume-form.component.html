@@ -1,6 +1,10 @@
 <h4 class="display-6 fw-bold">Make My Resume</h4>
 <p>Please fill the below details to generate your resume</p>
 
+<div class="text-end mb-3">
+    <button type="button" class="btn btn-primary" (click)="formatsModalTemplate.show()">Choose Resume Format</button>
+</div>
+
 <ng-container *ngIf="!!resumeForm">
     <form [formGroup]="resumeForm" (ngSubmit)="onSubmit(resumeForm.value)">
         <accordion>
@@ -96,7 +100,42 @@
 
 
         </accordion>
-
-        <button type="submit" class="btn btn-primary mt-2">Submit & Preview</button>
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary mt-2">Submit & Preview</button>
+        </div>
     </form>
 </ng-container>
+
+<div bsModal #formatsModalTemplate="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">Choose resume format</h4>
+                <button type="button" class="btn-close close pull-right" (click)="formatsModalTemplate.hide()"
+                    aria-label="Close">
+                    <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="formats-container">
+                    <div class="format-item">
+                        <input id="{{'f'+ formatTypes.ONE}}" [checked]="format === formatTypes.ONE" type="radio"
+                            name="format" [(ngModel)]="format" [value]="formatTypes.ONE">
+                        <label for="{{'f'+ formatTypes.ONE}}"><img src="../../../assets/images/format-1.JPG" /></label>
+                        <span class="note d-block text-center">Format 1</span>
+                    </div>
+                    <div class="format-item">
+                        <input id="{{'f'+ formatTypes.TWO}}" [checked]="format === formatTypes.TWO" type="radio"
+                            name="format" [(ngModel)]="format" [value]="formatTypes.TWO">
+                        <label for="{{'f'+ formatTypes.TWO}}"><img src="../../../assets/images/format-2.JPG" /></label>
+                        <span class="note d-block text-center">Format 2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="formatsModalTemplate.hide()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

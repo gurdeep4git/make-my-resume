@@ -1,4 +1,20 @@
 ::ng-deep {
+
+    .btn {
+        @media only screen and (max-width: 576px) {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            border-radius: 0.25rem;
+        }
+    }
+
+    form {
+        @media only screen and (max-width: 576px) {
+            font-size: 14px;
+        }
+    }
+
+
     .no-border {
 
         &:hover,
@@ -40,5 +56,61 @@
         @media only screen and (max-width: 576px) {
             margin-top: 1.5rem;
         }
+    }
+
+    .resume-content {
+        padding: 25px;
+
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .formats-container {
+        display: flex;
+        justify-content: center;
+
+        @media only screen and (max-width: 576px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .format-item {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+
+            @media only screen and (max-width: 576px) {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+        }
+
+        img {
+            width: 300px;
+
+            @media only screen and (max-width: 576px) {
+                width: 175px;
+            }
+        }
+
+        input[type=radio] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        input[type=radio]+label {
+            border: 2px solid #adabab;
+        }
+
+        input[type=radio]:checked+label {
+            border: 2px solid #0d6efd;
+        }
+
+
+
+
+
     }
 }

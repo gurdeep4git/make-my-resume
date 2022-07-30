@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormatTypes } from 'src/app/enums/format-type.enum';
 import { ResumeSections } from 'src/app/enums/resume-sections.enum';
 import { Certifications, EducationInformation, Experiences, Resume } from 'src/app/models/resume.model';
@@ -14,6 +15,7 @@ import { digitOnlyValidator, emailValidator } from '../validators';
 export class ResumeFormComponent implements OnInit {
 
   resumeSections = ResumeSections;
+  formatTypes = FormatTypes
 
   resumeForm: FormGroup;
   submitted: boolean;
@@ -27,10 +29,12 @@ export class ResumeFormComponent implements OnInit {
   resume: Resume;
   routerState: any;
 
+  format: number = FormatTypes.ONE;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+
   ) {
 
     if (this.router.getCurrentNavigation()?.extras.state) {
@@ -57,6 +61,8 @@ export class ResumeFormComponent implements OnInit {
     }
 
   }
+
+
 
   onSubmit(resumeData: any): void {
     this.submitted = true;
@@ -85,8 +91,8 @@ export class ResumeFormComponent implements OnInit {
       this.resume.experienceInformation.experiences.forEach((f: any, j: number) => {
         if (i == j) {
           f.description = e.description.replace(/[\n]/g, '@').split('@');
-          const a = f.description.filter((w: string, i: number) => w !== "");
-          f.description = a;
+          const filteredDescription = f.description.filter((w: string, i: number) => w !== "");
+          f.description = filteredDescription;
         }
       })
     })
@@ -104,7 +110,7 @@ export class ResumeFormComponent implements OnInit {
     this.resume.skills = resumeData.skills.split(',').map((e: string) => e.trim());
     this.resume.interests = resumeData.interests.split(',').map((e: string) => e.trim());
     this.resume.languages = resumeData.languages.split(',').map((e: string) => e.trim());
-    this.resume.formatType = FormatTypes.ONE;
+    this.resume.formatType = +this.format;
   }
 
   onAddClick(type: string): void {
@@ -220,6 +226,7 @@ export class ResumeFormComponent implements OnInit {
   }
 
   private populateResume(): void {
+    this.format = this.resume.formatType;
     this.fillPersonalInformation();
     this.fillEducationInformation();
     this.resumeForm.get('skills')?.setValue(this.resume.skills.join(', '));
@@ -227,8 +234,6 @@ export class ResumeFormComponent implements OnInit {
     this.resumeForm.get('languages')?.setValue(this.resume.languages.join(', '));
     this.fillCertificationInformation();
     this.fillExperienceInformation();
-
-
   }
 
 

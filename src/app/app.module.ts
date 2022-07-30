@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 import { EducationInformationComponent } from './components/resume-form/education-information/education-information.component';
 import { ExperienceInformationComponent } from './components/resume-form/experience-information/experience-information.component';
@@ -53,6 +55,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AccordionModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,14 +2,15 @@
 <p>Please review your resume, click edit to make any changes</p>
 
 <div class="text-end">
-    <button class="btn btn-link" (click)="onEdit()">Edit</button>
+    <a href="javascript:void(0)" class="link" (click)="onEdit()">Edit</a>
 </div>
-<div class="resume-content">
+
+<div [class.resume-content]="resume.formatType === formatTypes.ONE" class="my-3" style="border: 1px solid;">
     <div id="resumeContainer">
         <ng-template #dynamicInsert></ng-template>
     </div>
 </div>
 
 <div class="text-end">
-    <button class="btn btn-link" (click)="onDownload()">Download</button>
+    <button class="btn btn-primary" (click)="onDownload()">Download</button>
 </div>

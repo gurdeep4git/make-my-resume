@@ -6,8 +6,7 @@
         <div class="col-md-2 col-2">
             <div class="text-end">
                 <button [disabled]="educationInformation.length >= 3" type="button"
-                    (click)="onAddClick(resumeSections.EDUCATION_INFORMATION)"
-                    class="btn btn-primary btn-sm">Add</button>
+                    (click)="onAddClick(resumeSections.EDUCATION_INFORMATION)" class="btn btn-primary">Add</button>
             </div>
         </div>
     </div>
@@ -42,7 +41,7 @@
                         <div class="col-md-4 col-12">
                             <div>
                                 <label class="form-label">Year of Passing</label>
-                                <input type="text" class="form-control" formControlName="passingYear">
+                                <input type="text" class="form-control" maxlength="4" formControlName="passingYear">
                                 <ng-container
                                     *ngIf="(eduInfo.controls.passingYear.touched || submitted) && eduInfo.controls.passingYear.errors?.required">
                                     <div class="invalid-feedback">Please provide a year of passing.</div>

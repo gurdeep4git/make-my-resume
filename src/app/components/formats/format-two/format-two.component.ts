@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ResumeSections } from 'src/app/enums/resume-sections.enum';
+import { Resume } from 'src/app/models/resume.model';
 
 @Component({
   selector: 'app-format-two',
@@ -7,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormatTwoComponent implements OnInit {
 
-  students: { id: number, name: string }[];
+  resume: Resume;
+  resumeSections = ResumeSections;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log('Dynamic - pehle mai');
   }
 
 }

@@ -10,6 +10,7 @@ import { ResumeSections } from 'src/app/enums/resume-sections.enum';
 export class CertificationsInformationComponent implements OnInit {
 
   @Input() certificationsInformation: FormGroup;
+  @Input() submitted: boolean;
   @Output() addClickEvent = new EventEmitter<string>();
   @Output() deleteClickEvent = new EventEmitter();
   @Output() changeEvent = new EventEmitter();

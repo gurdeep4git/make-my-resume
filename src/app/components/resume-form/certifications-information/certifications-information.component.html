@@ -10,7 +10,7 @@
 
     <ng-container *ngIf="!showCertifications">
         <div class="text-end">
-            <button type="button" class="btn btn-primary btn-sm"
+            <button type="button" class="btn btn-primary"
                 (click)="onAddClick(resumeSections.CERTIFICATIONS_INFORMATION)">Add</button>
         </div>
         <ng-container *ngFor="let eduInfo of certifications.controls;let i = index">
@@ -24,7 +24,7 @@
                                     <input type="text" class="form-control" formControlName="title">
                                     <ng-container
                                         *ngIf="(eduInfo.controls.title.touched || submitted) && eduInfo.controls.title.errors?.required">
-                                        <div class="invalid-feedback">Please provide a certificate title.</div>
+                                        <div class="invalid-feedback">Please provide a certificate.</div>
                                     </ng-container>
                                 </div>
                             </div>
