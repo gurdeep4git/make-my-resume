@@ -1,7 +1,6 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormatTypes } from 'src/app/enums/format-type.enum';
 import { ResumeSections } from 'src/app/enums/resume-sections.enum';
 import { Certifications, EducationInformation, Experiences, Resume } from 'src/app/models/resume.model';
@@ -34,7 +33,6 @@ export class ResumeFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-
   ) {
 
     if (this.router.getCurrentNavigation()?.extras.state) {

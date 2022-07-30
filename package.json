@@ -21,7 +21,6 @@
     "bootstrap": "^5.2.0",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
-    "jspdf-html2canvas": "^1.4.9",
     "ngx-bootstrap": "^8.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
