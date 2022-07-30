@@ -1,6 +1,6 @@
 ![image](src/assets/images/make-my-resume.png)
 
-Live Application : [make-my-resume](https://my-resume-maker.netlify.app/form)
+Live Application : [make-my-resume](https://my-resume-maker.netlify.app)
 
 # MyResume
 
