@@ -1,5 +1,7 @@
 ![image](src/assets/images/make-my-resume.png)
 
+Live Application : [make-my-resume](https://my-resume-maker.netlify.app)
+
 # MyResume
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
