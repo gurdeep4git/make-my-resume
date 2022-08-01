@@ -1,6 +1,6 @@
 <form [formGroup]="personalInformation">
     <div class="row">
-        <div class="col-md-4 col-12">
+        <div class="col-md-6 col-12">
             <div class="mb-3">
                 <label class="form-label">Name</label>
                 <input type="text" class="form-control" formControlName="name">
@@ -11,15 +11,24 @@
             </div>
         </div>
 
+        <div class="col-md-6 col-12">
+            <div class="mb-3">
+                <label class="form-label">Designation</label>
+                <input type="text" class="form-control" formControlName="designation">
+                <ng-container
+                    *ngIf="(personalInfoFormControl.designation.touched || submitted) && personalInfoFormControl.designation.errors?.required">
+                    <div class="invalid-feedback">Please provide a designation.</div>
+                </ng-container>
+            </div>
+        </div>
+
         <div class="col-md-4 col-12">
             <div class="mb-3">
-                <label class="form-label">Email Id</label>
-                <input type="text" class="form-control" formControlName="emailId">
-                <ng-container *ngIf="personalInfoFormControl.emailId.touched || submitted">
-                    <div *ngIf="personalInfoFormControl.emailId.errors?.required" class="invalid-feedback">Please
-                        provide a email id.</div>
-                    <div *ngIf="personalInfoFormControl.emailId.errors?.emailInValid" class="invalid-feedback">Please
-                        provide a valid email id.</div>
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" formControlName="address">
+                <ng-container
+                    *ngIf="(personalInfoFormControl.address.touched || submitted) && personalInfoFormControl.address.errors?.required">
+                    <div class="invalid-feedback">Please provide an address.</div>
                 </ng-container>
             </div>
         </div>
@@ -39,6 +48,22 @@
                 </ng-container>
             </div>
         </div>
+
+
+        <div class="col-md-4 col-12">
+            <div class="mb-3">
+                <label class="form-label">Email Id</label>
+                <input type="text" class="form-control" formControlName="emailId">
+                <ng-container *ngIf="personalInfoFormControl.emailId.touched || submitted">
+                    <div *ngIf="personalInfoFormControl.emailId.errors?.required" class="invalid-feedback">Please
+                        provide a email id.</div>
+                    <div *ngIf="personalInfoFormControl.emailId.errors?.emailInValid" class="invalid-feedback">Please
+                        provide a valid email id.</div>
+                </ng-container>
+            </div>
+        </div>
+
+
 
         <div class="col-md-12 col-12">
             <div>

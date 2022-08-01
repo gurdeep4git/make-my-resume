@@ -13,9 +13,11 @@ export class Resume {
 
 export class PersonalInformation {
     name: string;
+    designation: string;
     phoneNumber: string;
     emailId: string;
     description: string;
+    address: string;
 }
 
 export class EducationInformation {

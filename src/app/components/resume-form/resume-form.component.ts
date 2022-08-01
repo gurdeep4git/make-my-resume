@@ -150,6 +150,8 @@ export class ResumeFormComponent implements OnInit {
     this.resumeForm = this.fb.group({
       personalInformation: this.fb.group({
         name: ['', Validators.required],
+        designation: ['', Validators.required],
+        address: ['', Validators.required],
         emailId: ['', [Validators.required, emailValidator]],
         phoneNumber: ['', [Validators.required, digitOnlyValidator]],
         description: ['', Validators.required]
@@ -293,6 +295,8 @@ export class ResumeFormComponent implements OnInit {
     this.personalInformationForm.get('emailId')?.setValue(this.resume.personalInformation.emailId);
     this.personalInformationForm.get('phoneNumber')?.setValue(this.resume.personalInformation.phoneNumber);
     this.personalInformationForm.get('description')?.setValue(this.resume.personalInformation.description);
+    this.personalInformationForm.get('designation')?.setValue(this.resume.personalInformation.designation);
+    this.personalInformationForm.get('address')?.setValue(this.resume.personalInformation.address);
   }
 }
 

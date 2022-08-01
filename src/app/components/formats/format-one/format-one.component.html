@@ -3,7 +3,12 @@
         <!-- PERSONAL -->
         <div class="personal-info section">
             <p class="c-title">{{resume.personalInformation.name}}</p>
+            <p class="mb-3 fw-bold">{{resume.personalInformation.designation}}</p>
             <ul class="c-details">
+                <li>
+                    <span class="c-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                    <span>{{resume.personalInformation.address}}</span>
+                </li>
                 <li>
                     <span class="c-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                     <span>{{resume.personalInformation.emailId}}</span>
@@ -17,7 +22,7 @@
 
         <!-- PROFILE -->
         <div class="section">
-            <h1 class="title">Profile</h1>
+            <h1 class="title">{{resumeSections.SUMMARY_INFORMATION}}</h1>
             <p class="text-wrap">{{resume.personalInformation.description}}</p>
         </div>
 
@@ -73,19 +78,19 @@
             </div>
         </ng-container>
 
-        <!-- INTERESTS -->
-        <div class="section">
-            <h1 class="title">{{resumeSections.INTERESTS_INFORMATION}}</h1>
-            <ul>
-                <li *ngFor="let item of resume.interests">{{item}}</li>
-            </ul>
-        </div>
-
         <!-- LANGUAGES -->
         <div class="section">
             <h1 class="title">{{resumeSections.LANGUAGES_INFORMATION}}</h1>
             <ul>
                 <li *ngFor="let item of resume.languages">{{item}}</li>
+            </ul>
+        </div>
+
+        <!-- INTERESTS -->
+        <div class="section">
+            <h1 class="title">{{resumeSections.INTERESTS_INFORMATION}}</h1>
+            <ul>
+                <li *ngFor="let item of resume.interests">{{item}}</li>
             </ul>
         </div>
 
