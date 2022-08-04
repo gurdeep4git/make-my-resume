@@ -4,7 +4,7 @@
             <div>
                 <label class="form-label">Interests</label><small class="note ms-1">(Add your interests comma
                     separated)</small>
-                <input type="text" class="form-control" formControlName="interests">
+                <input appInputError type="text" class="form-control" formControlName="interests">
                 <ng-container
                     *ngIf="(parentForm.controls.interests.touched || submitted) && parentForm.controls.interests.errors?.required">
                     <div class="invalid-feedback">Please provide interests.</div>

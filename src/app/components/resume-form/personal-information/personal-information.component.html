@@ -3,7 +3,7 @@
         <div class="col-md-6 col-12">
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control" formControlName="name">
+                <input appInputError type="text" class="form-control" formControlName="name">
                 <ng-container
                     *ngIf="(personalInfoFormControl.name.touched || submitted) && personalInfoFormControl.name.errors?.required">
                     <div class="invalid-feedback">Please provide a name.</div>
@@ -14,7 +14,7 @@
         <div class="col-md-6 col-12">
             <div class="mb-3">
                 <label class="form-label">Designation</label>
-                <input type="text" class="form-control" formControlName="designation">
+                <input appInputError type="text" class="form-control" formControlName="designation">
                 <ng-container
                     *ngIf="(personalInfoFormControl.designation.touched || submitted) && personalInfoFormControl.designation.errors?.required">
                     <div class="invalid-feedback">Please provide a designation.</div>
@@ -25,7 +25,7 @@
         <div class="col-md-4 col-12">
             <div class="mb-3">
                 <label class="form-label">Address</label>
-                <input type="text" class="form-control" formControlName="address">
+                <input appInputError type="text" class="form-control" formControlName="address">
                 <ng-container
                     *ngIf="(personalInfoFormControl.address.touched || submitted) && personalInfoFormControl.address.errors?.required">
                     <div class="invalid-feedback">Please provide an address.</div>
@@ -36,7 +36,7 @@
         <div class="col-md-4 col-12">
             <div class="mb-3">
                 <label class="form-label">Phone Number</label>
-                <input type="text" class="form-control" maxlength="10" formControlName="phoneNumber">
+                <input appInputError type="text" class="form-control" maxlength="10" formControlName="phoneNumber">
                 <ng-container *ngIf="personalInfoFormControl.phoneNumber.touched || submitted">
                     <div *ngIf="personalInfoFormControl.phoneNumber.errors?.required" class="invalid-feedback">
                         Please provide a phone number.
@@ -53,7 +53,7 @@
         <div class="col-md-4 col-12">
             <div class="mb-3">
                 <label class="form-label">Email Id</label>
-                <input type="text" class="form-control" formControlName="emailId">
+                <input appInputError type="text" class="form-control" formControlName="emailId">
                 <ng-container *ngIf="personalInfoFormControl.emailId.touched || submitted">
                     <div *ngIf="personalInfoFormControl.emailId.errors?.required" class="invalid-feedback">Please
                         provide a email id.</div>
@@ -68,7 +68,7 @@
         <div class="col-md-12 col-12">
             <div>
                 <label class="form-label">Summary</label>
-                <textarea class="form-control" formControlName="description" rows="3"></textarea>
+                <textarea appInputError class="form-control" formControlName="description" rows="3"></textarea>
                 <ng-container
                     *ngIf="(personalInfoFormControl.description.touched || submitted) && personalInfoFormControl.description.errors?.required">
                     <div class="invalid-feedback">Please provide a description.</div>

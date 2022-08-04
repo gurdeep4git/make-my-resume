@@ -19,7 +19,7 @@
                         <div class="col-md-4 col-12">
                             <div>
                                 <label class="form-label">Course</label>
-                                <input type="text" class="form-control" formControlName="courseName">
+                                <input appInputError type="text" class="form-control" formControlName="courseName">
                                 <ng-container
                                     *ngIf="(eduInfo.controls.courseName.touched || submitted) && eduInfo.controls.courseName.errors?.required">
                                     <div class="invalid-feedback">Please provide a course.</div>
@@ -30,7 +30,7 @@
                         <div class="col-md-4 col-12">
                             <div>
                                 <label class="form-label">Institution</label>
-                                <input type="text" class="form-control" formControlName="institutionName">
+                                <input appInputError type="text" class="form-control" formControlName="institutionName">
                                 <ng-container
                                     *ngIf="(eduInfo.controls.institutionName.touched || submitted) && eduInfo.controls.institutionName.errors?.required">
                                     <div class="invalid-feedback">Please provide a institution.</div>
@@ -41,7 +41,8 @@
                         <div class="col-md-4 col-12">
                             <div>
                                 <label class="form-label">Year of Passing</label>
-                                <input type="text" class="form-control" maxlength="4" formControlName="passingYear">
+                                <input appInputError type="text" class="form-control" maxlength="4"
+                                    formControlName="passingYear">
                                 <ng-container
                                     *ngIf="(eduInfo.controls.passingYear.touched || submitted) && eduInfo.controls.passingYear.errors?.required">
                                     <div class="invalid-feedback">Please provide a year of passing.</div>
