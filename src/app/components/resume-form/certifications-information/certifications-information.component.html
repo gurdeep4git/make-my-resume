@@ -21,7 +21,7 @@
                             <div class="col-md-4 col-12">
                                 <div>
                                     <label class="form-label">Certificate</label>
-                                    <input type="text" class="form-control" formControlName="title">
+                                    <input appInputError type="text" class="form-control" formControlName="title">
                                     <ng-container
                                         *ngIf="(eduInfo.controls.title.touched || submitted) && eduInfo.controls.title.errors?.required">
                                         <div class="invalid-feedback">Please provide a certificate.</div>
@@ -32,7 +32,8 @@
                             <div class="col-md-4 col-12">
                                 <div>
                                     <label class="form-label">Organization</label>
-                                    <input type="text" class="form-control" formControlName="organization">
+                                    <input appInputError type="text" class="form-control"
+                                        formControlName="organization">
                                     <ng-container
                                         *ngIf="(eduInfo.controls.organization.touched || submitted) && eduInfo.controls.organization.errors?.required">
                                         <div class="invalid-feedback">Please provide organization.</div>

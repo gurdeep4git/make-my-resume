@@ -23,6 +23,7 @@ import { InterestsInformationComponent } from './components/resume-form/interest
 import { CertificationsInformationComponent } from './components/resume-form/certifications-information/certifications-information.component';
 import { LanguagesInformationComponent } from './components/resume-form/languages-information/languages-information.component';
 import { PhoneMaskedPipe } from './pipes/phone-masked.pipe';
+import { InputErrorDirective } from './components/directives/input-error.directive';
 
 const routes: Routes = [
   { path: 'form', component: ResumeFormComponent },
@@ -45,7 +46,8 @@ const routes: Routes = [
     InterestsInformationComponent,
     CertificationsInformationComponent,
     LanguagesInformationComponent,
-    PhoneMaskedPipe
+    PhoneMaskedPipe,
+    InputErrorDirective
   ],
   imports: [
     BrowserModule,

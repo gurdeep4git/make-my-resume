@@ -23,7 +23,8 @@
                                 <div class="col-md-4 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Organization</label>
-                                        <input type="text" class="form-control" formControlName="organizationName">
+                                        <input appInputError type="text" class="form-control"
+                                            formControlName="organizationName">
                                         <ng-container
                                             *ngIf="(expInfo.controls.organizationName.touched || submitted) && expInfo.controls.organizationName.errors?.required">
                                             <div class="invalid-feedback">Please provide an organization.</div>
@@ -34,9 +35,9 @@
                                 <div class="col-md-4 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Joining Date</label>
-                                        <input type="text" class="form-control" bsDatepicker placeholder="MM/DD/YYYY"
-                                            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [bsValue]="bsValue"
-                                            formControlName="tenureFrom">
+                                        <input appInputError type="text" class="form-control" bsDatepicker
+                                            placeholder="MM/DD/YYYY" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                                            [bsValue]="bsValue" formControlName="tenureFrom">
                                         <ng-container
                                             *ngIf="(expInfo.controls.tenureFrom.touched || submitted) && expInfo.controls.tenureFrom.errors?.required">
                                             <div class="invalid-feedback">Please provide a joining date.</div>
@@ -58,9 +59,9 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" bsDatepicker placeholder="MM/DD/YYYY"
-                                            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [bsValue]="bsValue"
-                                            formControlName="tenureTo">
+                                        <input type="text" appInputError class="form-control" bsDatepicker
+                                            placeholder="MM/DD/YYYY" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }"
+                                            [bsValue]="bsValue" formControlName="tenureTo">
                                         <ng-container
                                             *ngIf="(expInfo.controls.tenureTo.touched || submitted) && expInfo.controls.tenureTo.errors?.required">
                                             <div class="invalid-feedback">Please provide a leaving date.</div>
@@ -71,7 +72,8 @@
                                 <div class="col-md-4 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Project</label>
-                                        <input type="text" class="form-control" formControlName="projectName">
+                                        <input appInputError type="text" class="form-control"
+                                            formControlName="projectName">
                                         <ng-container
                                             *ngIf="(expInfo.controls.projectName.touched || submitted) && expInfo.controls.projectName.errors?.required">
                                             <div class="invalid-feedback">Please provide a project.</div>
@@ -82,7 +84,7 @@
                                 <div class="col-md-4 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Role</label>
-                                        <input type="text" class="form-control" formControlName="role">
+                                        <input appInputError type="text" class="form-control" formControlName="role">
                                         <ng-container
                                             *ngIf="(expInfo.controls.role.touched || submitted) && expInfo.controls.role.errors?.required">
                                             <div class="invalid-feedback">Please provide a role.</div>
@@ -97,7 +99,7 @@
                                                 points and press
                                                 enter at
                                                 the end)</small></label>
-                                        <textarea class="form-control" formControlName="description"
+                                        <textarea appInputError class="form-control" formControlName="description"
                                             rows="3"></textarea>
                                         <ng-container
                                             *ngIf="(expInfo.controls.description.touched || submitted) && expInfo.controls.description.errors?.required">
