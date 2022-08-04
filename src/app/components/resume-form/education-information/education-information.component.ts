@@ -14,12 +14,15 @@ export class EducationInformationComponent implements OnInit {
   @Output() deleteClickEvent = new EventEmitter();
   @Output() addClickEvent = new EventEmitter<string>();
 
-
+  yearsList: number[];
   resumeSections = ResumeSections;
+
+  readonly START_YEAR = 1980;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setYearsDropdown()
   }
 
   onAddClick(type: string): void {
@@ -28,6 +31,15 @@ export class EducationInformationComponent implements OnInit {
 
   onDelete(index: number, type: string) {
     this.deleteClickEvent.emit({ index, type });
+  }
+
+  private setYearsDropdown() {
+    this.yearsList = [];
+    const date = new Date().getUTCFullYear();
+
+    for (let i = this.START_YEAR; i <= date; i++) {
+      this.yearsList.push(i);
+    }
   }
 
 }

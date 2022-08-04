@@ -41,8 +41,10 @@
                         <div class="col-md-4 col-12">
                             <div>
                                 <label class="form-label">Year of Passing</label>
-                                <input appInputError type="text" class="form-control" maxlength="4"
-                                    formControlName="passingYear">
+                                <select class="form-select" formControlName="passingYear">
+                                    <option [value]="''">--Select--</option>
+                                    <option [value]="item" *ngFor="let item of yearsList">{{item}}</option>
+                                </select>
                                 <ng-container
                                     *ngIf="(eduInfo.controls.passingYear.touched || submitted) && eduInfo.controls.passingYear.errors?.required">
                                     <div class="invalid-feedback">Please provide a year of passing.</div>
